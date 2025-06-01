@@ -1,25 +1,109 @@
-# 🩺 MedChat AI
 
-A conversational medical assistant that provides basic suggestions based on symptoms entered in *English* and *Hinglish*. It's built using LLMs (OpenAI API), vector search (FAISS), and LangChain, all wrapped in a Streamlit interface.
+🧠 AI Symptom Checker with Remedies
 
-The goal: to help users get preliminary medical insights without needing an immediate doctor visit, especially for common symptoms.
+A simple and interactive Streamlit web application that uses a fine-tuned BERT model to predict diseases based on user-described symptoms and suggests basic remedies. Powered by Transformers and Ngrok for easy sharing.
+
+🚀 Features
+
+Predicts likely disease based on symptoms using a BERT-based text classification model.
+
+Displays predicted disease, confidence score, and helpful home remedies.
+
+Runs on Streamlit and can be shared online using Ngrok.
+
+Includes a pre-defined mapping for common diseases like flu, COVID-19, dengue, etc.
+
+
 
 ---
 
-## 🔧 Stack
+🛠 Installation
 
-- *Frontend*: Streamlit
-- *LLM*: OpenAI (GPT-3.5/4)
-- *Vector DB*: FAISS
-- *LangChain*: for prompt orchestration
-- *Language*: Python
+1. Clone this repo or copy the app.py script.
+
+2. Install dependencies:
+
+pip install streamlit transformers pyngrok --quiet
+
 
 ---
 
-## 📦 Setup
+🧪 Running the App
 
-```bash
-git clone https://github.com/chetanprakash2/medchat-ai.git
-cd medchat-ai
-pip install -r requirements.txt
+1. Write the app code to a Python file :
+
+%%writefile app.py
+# (app code)
+
+2. Start the Streamlit app:
+
 streamlit run app.py
+
+3. Ngrok Tunnel (for sharing your app online):
+
+from pyngrok import ngrok, conf
+
+conf.get_default().auth_token = "<YOUR_AUTHTOKEN>"
+public_url = ngrok.connect(8501)
+print(f"🌍 Your app is live at: {public_url}")
+
+Replace <YOUR_AUTHTOKEN> with your actual Ngrok Authtoken.
+
+
+---
+
+🧠 Model Info
+
+The app uses the Hugging Face model: shanover/symps_disease_bert_v3_c41
+
+This model is fine-tuned for text classification on symptom-based disease prediction tasks.
+
+
+---
+
+🏥 Supported Diseases & Remedies
+
+
+---
+
+🧠 How It Works
+
+1. User enters symptoms in plain text.
+
+
+2. Text is passed to a BERT-based classifier model.
+
+
+3. Model outputs a predicted label and confidence score.
+
+
+4. The app maps the label to a known disease and displays a remedy.
+
+
+
+
+---
+
+📌 Notes
+
+The app is for informational purposes only and does not replace professional medical advice.
+
+Model predictions are based on limited training data and may not cover all diseases.
+
+Always consult a qualified healthcare provider for serious or persistent symptoms.
+
+
+
+---
+
+🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first.
+
+
+---
+
+📄 License
+
+This project is licensed under the MIT License.
+
